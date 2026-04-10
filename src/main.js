@@ -5,17 +5,13 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const statusBanner = document.getElementById('status-banner');
 const passwordForm = document.getElementById('password-form');
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  showStatus('Supabase URL or anon key is missing. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.', 'error');
-}
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
 function showStatus(message, type = 'info') {
   statusBanner.textContent = message;
   statusBanner.className = `status-banner ${type}`;
   statusBanner.style.display = 'block';
 }
+
+const supabase = createClient(supabaseUrl || '', supabaseAnonKey || '');
 
 async function handlePasswordUpdate(event) {
   event.preventDefault();
