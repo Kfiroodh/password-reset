@@ -13,6 +13,25 @@ function showStatus(message, type = 'info') {
 
 const supabase = createClient(supabaseUrl || '', supabaseAnonKey || '');
 
+// Listen for auth state changes
+supabase.auth.onAuthStateChange((event, session) => {
+  console.log('Auth event:', event, 'Session:', session);
+});
+
+// Check current session on page load
+async function checkSession() {
+  const { data: { session }, error } = await supabase.auth.getSession();
+  console.log('Current session:', session);
+  console.log('Session error:', error);
+  if (!session) {
+    showStatus('⏳ Loading... Please wait a moment.', 'info');
+    // Wait a moment for session to load from URL
+    setTimeout(checkSession, 1000);
+  }
+}
+
+checkSession();
+
 async function handlePasswordUpdate(event) {
   event.preventDefault();
   const password = document.getElementById('password').value;
@@ -28,16 +47,23 @@ async function handlePasswordUpdate(event) {
     return;
   }
 
-  const { data: { user } } = await supabase.auth.getUser();
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  console.log('User:', user);
+  console.log('User error:', userError);
+  
   if (!user) {
-    showStatus('Session expired. Please try the reset link again.', 'error');
+    showStatus('❌ not logged in. Session may have expired. Try the reset link again.', 'error');
     return;
   }
 
-  const { error } = await supabase.auth.updateUser({ password });
+  showStatus('⏳ Updating password...', 'info');
+  
+  const { data, error } = await supabase.auth.updateUser({ password });
+  console.log('Update response:', data);
+  console.log('Update error:', error);
 
   if (error) {
-    showStatus(error.message, 'error');
+    showStatus(`❌ Error: ${error.message}`, 'error');
     return;
   }
 
