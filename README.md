@@ -1,14 +1,13 @@
-# Supabase Forgot Password Page
+# Supabase Password Reset Page
 
-A simple password-reset page built with Vite and Supabase.
+A simple password creation page for users resetting their password via Supabase.
 
 ## What this does
 
-- Sends a password reset email to the user
-- Uses Supabase `resetPasswordForEmail`
-- Shows a password creation form when user clicks the reset link
-- Updates the password using Supabase `updateUser`
-- Shows success message after password is updated
+- User receives email from Supabase with password reset link
+- User clicks link → redirected to this page
+- User enters new password → updates via Supabase
+- Shows success message
 
 ## Setup
 
