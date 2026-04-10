@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forgot Password | Supabase</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <section class="card">
+        <div class="brand">Supabase Password Reset</div>
+        <h1>Forgot Password</h1>
+        <p class="subtitle">Enter your email and we'll send you the reset link.</p>
+
+        <div id="status-banner" class="status-banner" style="display:none"></div>
+
+        <form id="reset-form" class="form-card">
+          <label for="email">Email address</label>
+          <input id="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+          <button type="submit" class="btn">Send reset link</button>
+        </form>
+
+        <form id="password-form" class="form-card" style="display:none">
+          <label for="password">New password</label>
+          <input id="password" type="password" placeholder="Enter new password" autocomplete="new-password" required />
+          <label for="confirm-password">Confirm password</label>
+          <input id="confirm-password" type="password" placeholder="Confirm new password" autocomplete="new-password" required />
+          <button type="submit" class="btn">Update password</button>
+        </form>
+
+        <div class="hint">
+          After password reset, this page will show a success message.
+        </div>
+      </section>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

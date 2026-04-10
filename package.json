@@ -1,0 +1,17 @@
+{
+  "name": "supabase-forgot-password",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.35.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.1"
+  }
+}
