@@ -23,8 +23,6 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
 // Listen for auth state changes
 supabase.auth.onAuthStateChange((event, session) => {
   console.log('Auth event:', event, 'Session:', session);
